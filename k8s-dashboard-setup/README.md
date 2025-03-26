@@ -39,6 +39,15 @@ chmod +x deploy-dashboard.sh
 ```
 
 ### 5. Access Kubernetes Dashboard
+- Deploy Kubernetes Dashboard
+*This downloads and applies the official Kubernetes Dashboard YAML file.*
+  ```sh
+  kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
+  ```
+- Modify Dashboard Service from ***ClusterIP** to **NodePort**
+  ```sh
+  kubectl edit svc kubernetes-dashboard -n kubernetes-dashboard
+  ```
 - Find the assigned **NodePort** for the Dashboard:
   ```sh
   kubectl get svc kubernetes-dashboard -n kubernetes-dashboard
@@ -52,6 +61,17 @@ chmod +x deploy-dashboard.sh
   kubectl -n kubernetes-dashboard create token cluster-admin-dashboard-sa
   ```
 - Copy and paste the token into the login page.
+
+- Grant Cluster Admin Permissions:
+  ```sh
+  kubectl create clusterrolebinding cluster-admin-dashboard-sa \
+  --clusterrole=cluster-admin \
+  --serviceaccount=kubernetes-dashboard:cluster-admin-dashboard-sa
+  ```
+- Get the Dashboard Login Token:
+  ```sh
+  kubectl -n kubernetes-dashboard create token cluster-admin-dashboard-sa
+  ```
 
 ### 6. Delete Deployment, Service, and Ingress
 ```sh
