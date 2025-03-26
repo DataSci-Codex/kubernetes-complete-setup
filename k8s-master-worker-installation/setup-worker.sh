@@ -3,6 +3,9 @@
 # Set hostname for Worker Node
 sudo hostnamectl set-hostname WorkerNode
 
+# root user (superuser)
+sudo su
+
 # Disable Swap
 sudo swapoff -a
 
