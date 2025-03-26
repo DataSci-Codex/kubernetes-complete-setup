@@ -37,10 +37,35 @@ wget https://raw.githubusercontent.com/DataSci-Codex/kubernetes-complete-setup/m
 chmod +x deploy-ingress.sh
 ./deploy-ingress.sh
 ```
-
 ### 5. Check the Ingress and Service Details
+- Deploy the Ingress Controller (Cloud Environment)
+```sh
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.44.0/deploy/static/provider/cloud/deploy.yaml
+```
+- Deploy the Ingress Controller (Bare Metal Environment)
+```sh
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.44.0/deploy/static/provider/baremetal/deploy.yaml
+```
+- Verify the Ingress Controller Deployment
+```sh
+kubectl get pods --all-namespaces -l app.kubernetes.io/name=ingress-nginx
+```
+- Create nano ingress.yaml
+*Opens a text editor (nano) to create the Ingress configuration file.
+Paste the following YAML configuration:*
+```sh
+nano ingress.yaml
+```
+- Apply the Ingress Configuration
+```sh
+kubectl create -f ingress.yaml
+```
+- Verify the Ingress Service
 ```sh
 kubectl get svc -n ingress-nginx
+```
+- Displays all Ingress resources in the default namespace.
+```sh
 kubectl get ingress
 ```
 
