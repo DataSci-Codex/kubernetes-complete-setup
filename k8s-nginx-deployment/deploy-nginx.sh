@@ -27,7 +27,9 @@ spec:
 EOF
 
 # Deploy the Nginx application
+kubectl create -f nginx.yaml
 kubectl apply -f nginx.yaml
+
 
 # Check deployment status
 kubectl get deployments
