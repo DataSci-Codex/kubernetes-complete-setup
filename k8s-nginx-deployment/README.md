@@ -17,7 +17,43 @@ chmod +x deploy-nginx.sh
 ./deploy-nginx.sh
 ```
 
-### 2. Verify Deployment
+### 2. Verify Deployment and Process
+- Create a YAML file using nano
+```sh
+nano nginx.yaml
+```
+- Create the Resource Using kubectl create
+```sh
+kubectl create -f nginx.yaml
+```
+- Apply Changes Using kubectl apply
+```sh
+kubectl apply -f nginx.yaml
+```
+- Update System Packages
+```sh
+sudo apt-get update
+```
+- List All Running Pods
+```sh
+kubectl get pods
+```
+- List Kubernetes Deployments
+```sh
+kubectl get deployment
+```
+- List Kubernetes Services
+```sh
+kubectl get service
+```
+- List All Pods in All Namespaces
+```sh
+kubectl get pods --all-namespaces
+```
+- View Kubernetes Cluster Information
+```sh
+kubectl cluster-info
+```
 ```sh
 kubectl get pods
 kubectl get deployments
