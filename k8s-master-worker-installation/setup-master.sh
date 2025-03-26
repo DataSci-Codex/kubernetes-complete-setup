@@ -3,6 +3,9 @@
 # Set hostname for Master Node
 sudo hostnamectl set-hostname MasterNode
 
+# root user (superuser)
+sudo su
+
 # Disable Swap
 sudo swapoff -a
 
